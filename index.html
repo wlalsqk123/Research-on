@@ -1614,61 +1614,7 @@ html,body{height:100%;font-family:'Malgun Gothic','맑은 고딕','Apple SD Goth
       </div>
     </div>
 
-  </div>
-</div>
-</div>
-
-<!-- 자료 상세 모달 -->
-<div class="modal-overlay" id="docModal">
-  <div class="modal" style="width:500px">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:1rem">
-      <div>
-        <div id="doc-modal-meta" style="margin-bottom:.5rem;display:flex;gap:6px;flex-wrap:wrap"></div>
-        <h3 id="doc-modal-title" style="font-size:.9rem;margin:0;line-height:1.5"></h3>
-      </div>
-      <button class="btn" onclick="closeDocModal()" style="padding:4px 8px;flex-shrink:0"><i class="ti ti-x" aria-hidden="true"></i></button>
-    </div>
-    <div class="doc-body-text" id="doc-modal-body"></div>
-    <div class="modal-foot">
-      <button class="btn" onclick="closeDocModal()">닫기</button>
-      <button class="btn pri" onclick="saveDoc()"><i class="ti ti-heart" aria-hidden="true"></i>저장하기</button>
-    </div>
-  </div>
-</div>
-
-<!-- 키워드 등록 모달 -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <h3 id="modal-title">키워드 등록</h3>
-    <label class="form-label">키워드명 *</label>
-    <input class="form-input" id="modal-kw-name" placeholder="예) AI Agent, ESG, 구독경제"/>
-    <label class="form-label">카테고리 *</label>
-    <select class="form-select" id="modal-kw-cat">
-      <option value="">선택하세요</option>
-      <option value="Industry">Industry — 산업 동향</option>
-      <option value="Client">Client — 클라이언트 동향</option>
-      <option value="Competitor">Competitor — 경쟁사 동향</option>
-      <option value="Regulation">Regulation — 법규·정책</option>
-      <option value="Technology">Technology — 기술 트렌드</option>
-    </select>
-    <label class="form-label">설명 (선택)</label>
-    <textarea class="form-input" id="modal-kw-desc" rows="3" placeholder="키워드에 대한 간략한 설명을 입력하세요" style="resize:none"></textarea>
-    <label class="form-label">연관 키워드 (엔터로 추가)</label>
-    <div class="tag-input-area" id="relTagArea">
-      <input type="text" id="relTagInput" placeholder="연관 키워드 입력 후 엔터"/>
-    </div>
-    <div style="margin-top:.8rem;padding:.7rem .9rem;background:var(--n0);border-radius:6px;font-size:.7rem;color:var(--muted)">
-      <i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>
-      등록한 키워드는 관심 키워드에 자동으로 추가됩니다.
-    </div>
-    <div class="modal-foot">
-      <button class="btn" onclick="closeAddModal()">취소</button>
-      <button class="btn pri" onclick="saveKeyword()"><i class="ti ti-check" aria-hidden="true"></i>등록하기</button>
-    </div>
-  </div>
-</div>
-
-
+  
 <!-- ════════════ 관리자 페이지들 ════════════ -->
 
 <!-- 1. 키워드 관리 -->
@@ -1779,6 +1725,62 @@ html,body{height:100%;font-family:'Malgun Gothic','맑은 고딕','Apple SD Goth
     <div id="nl-schedule-list" style="margin-top:.8rem;"></div>
   </div>
 </div>
+
+
+</div>
+</div>
+</div>
+
+<!-- 자료 상세 모달 -->
+<div class="modal-overlay" id="docModal">
+  <div class="modal" style="width:500px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1rem;gap:1rem">
+      <div>
+        <div id="doc-modal-meta" style="margin-bottom:.5rem;display:flex;gap:6px;flex-wrap:wrap"></div>
+        <h3 id="doc-modal-title" style="font-size:.9rem;margin:0;line-height:1.5"></h3>
+      </div>
+      <button class="btn" onclick="closeDocModal()" style="padding:4px 8px;flex-shrink:0"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </div>
+    <div class="doc-body-text" id="doc-modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeDocModal()">닫기</button>
+      <button class="btn pri" onclick="saveDoc()"><i class="ti ti-heart" aria-hidden="true"></i>저장하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 키워드 등록 모달 -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <h3 id="modal-title">키워드 등록</h3>
+    <label class="form-label">키워드명 *</label>
+    <input class="form-input" id="modal-kw-name" placeholder="예) AI Agent, ESG, 구독경제"/>
+    <label class="form-label">카테고리 *</label>
+    <select class="form-select" id="modal-kw-cat">
+      <option value="">선택하세요</option>
+      <option value="Industry">Industry — 산업 동향</option>
+      <option value="Client">Client — 클라이언트 동향</option>
+      <option value="Competitor">Competitor — 경쟁사 동향</option>
+      <option value="Regulation">Regulation — 법규·정책</option>
+      <option value="Technology">Technology — 기술 트렌드</option>
+    </select>
+    <label class="form-label">설명 (선택)</label>
+    <textarea class="form-input" id="modal-kw-desc" rows="3" placeholder="키워드에 대한 간략한 설명을 입력하세요" style="resize:none"></textarea>
+    <label class="form-label">연관 키워드 (엔터로 추가)</label>
+    <div class="tag-input-area" id="relTagArea">
+      <input type="text" id="relTagInput" placeholder="연관 키워드 입력 후 엔터"/>
+    </div>
+    <div style="margin-top:.8rem;padding:.7rem .9rem;background:var(--n0);border-radius:6px;font-size:.7rem;color:var(--muted)">
+      <i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>
+      등록한 키워드는 관심 키워드에 자동으로 추가됩니다.
+    </div>
+    <div class="modal-foot">
+      <button class="btn" onclick="closeAddModal()">취소</button>
+      <button class="btn pri" onclick="saveKeyword()"><i class="ti ti-check" aria-hidden="true"></i>등록하기</button>
+    </div>
+  </div>
+</div>
+
 
 <div class="toast" id="toast"></div>
 
