@@ -1843,6 +1843,9 @@ function initApp(userInfo) {
   window._userRole = userInfo.role || 'user';
   window._userInfo = userInfo;
 
+  // goPage 훅 적용 (initApp 시점에 goPage가 이미 정의되어 있음)
+  applyGoPageHook();
+
   // 앱 초기 렌더
   renderHome();
   renderCategory();
@@ -2695,15 +2698,20 @@ function updateTopbarActions(pageId) {
   }
 }
 
-// ── goPage 훅 ──
-const _origGoPage = goPage;
-goPage = function(id, noHist) {
-  _origGoPage(id, noHist);
-  updateTopbarActions(id);
-  if(id === 'admin-keyword')    renderAdminKeywords();
-  if(id === 'admin-approve')    renderAdminApprove();
-  if(id === 'admin-newsletter') renderAdminNewsletter();
-};
+// ── goPage 훅 — initApp 이후 안전하게 적용 ──
+function applyGoPageHook() {
+  if(typeof goPage !== 'function') return;
+  if(goPage._hooked) return;
+  const _orig = goPage;
+  goPage = function(id, noHist) {
+    _orig(id, noHist);
+    updateTopbarActions(id);
+    if(id === 'admin-keyword')    renderAdminKeywords();
+    if(id === 'admin-approve')    renderAdminApprove();
+    if(id === 'admin-newsletter') renderAdminNewsletter();
+  };
+  goPage._hooked = true;
+}
 
 // ── PAGE_META 관리자 페이지 등록 ──
 PAGE_META['admin-keyword']    = {title:'키워드 관리',    icon:'ti-tag-starred'};
