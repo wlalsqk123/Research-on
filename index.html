@@ -999,12 +999,15 @@ html,body{height:100%;font-family:'Malgun Gothic','맑은 고딕','Apple SD Goth
       if (res.ok && data.success) {
         showStatus('login-status', 'success', '<strong>로그인 성공</strong><br>잠시 후 이동합니다...');
         setTimeout(() => {
-          initApp({
+          const userInfo = {
             name:        data.name        || '',
             affiliation: data.affiliation || '',
             userId:      data.userId      || '',
             role:        data.role        || 'user'
-          });
+          };
+          // 새로고침 후에도 유지되도록 sessionStorage에 저장
+          sessionStorage.setItem('userInfo', JSON.stringify(userInfo));
+          initApp(userInfo);
         }, 600);
       } else {
         showStatus('login-status', 'error',
@@ -2625,6 +2628,9 @@ function appHandleLogout(){
     window._userRole = null;
     window._userInfo = null;
 
+    // sessionStorage 삭제
+    sessionStorage.removeItem('userInfo');
+
     // 탭을 로그인으로 초기화
     document.getElementById('tab-login').classList.add('active');
     document.getElementById('tab-signup').classList.remove('active');
@@ -2989,6 +2995,20 @@ function cancelNlSchedule(id) {
 document.addEventListener('input', function(e) {
   if(e.target && e.target.id === 'nl-title') updateNlPreview();
 });
+
+  // ── 새로고침 후 자동 로그인 복원 ──
+  (function restoreSession() {
+    const saved = sessionStorage.getItem('userInfo');
+    if(!saved) return;
+    try {
+      const userInfo = JSON.parse(saved);
+      if(userInfo && userInfo.userId) {
+        initApp(userInfo);
+      }
+    } catch(e) {
+      sessionStorage.removeItem('userInfo');
+    }
+  })();
 </script>
 
 </body>
