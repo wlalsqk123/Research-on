@@ -601,9 +601,9 @@ html,body{height:100%;font-family:'Malgun Gothic','맑은 고딕','Apple SD Goth
 .btn.pri{background:var(--blue);color:#fff;border-color:var(--blue);font-weight:700}.btn.pri:hover{background:var(--blue-h)}
 
 /* ── 페이지 전환 ── */
-.pages{flex:1;overflow-y:auto}
-.page{overflow-y:auto;padding:1.4rem 1.6rem;display:none;flex-direction:column;gap:1.1rem;animation:fi .18s ease}
-.page.show{display:flex}
+.pages{flex:1;overflow:hidden;position:relative}
+.page{position:absolute;inset:0;overflow-y:auto;padding:1.4rem 1.6rem;display:none;flex-direction:column;gap:1.1rem;animation:fi .18s ease;pointer-events:none}
+.page.show{display:flex;pointer-events:auto}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
 /* ── 공통 ── */
@@ -1928,7 +1928,6 @@ function goPage(id, noHist){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
   const pg=document.getElementById('page-'+id);
   if(pg){pg.classList.add('show');pg.scrollTop=0;}
-  const pagesEl=document.querySelector('.pages');if(pagesEl)pagesEl.scrollTop=0;
   if(!noHist) pageHistory.push(id);
   const meta=PAGE_META[id]||{title:id,icon:'ti-home'};
   document.getElementById('topTitle').textContent=meta.title;
