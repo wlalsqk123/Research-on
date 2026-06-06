@@ -2997,18 +2997,19 @@ document.addEventListener('input', function(e) {
 });
 
   // ── 새로고침 후 자동 로그인 복원 ──
-  window.addEventListener('DOMContentLoaded', function() {
+  (function() {
     const saved = sessionStorage.getItem('userInfo');
     if(!saved) return;
     try {
       const userInfo = JSON.parse(saved);
       if(userInfo && userInfo.userId) {
+        // 앱 래퍼가 숨겨진 상태에서 initApp 호출
         initApp(userInfo);
       }
     } catch(e) {
       sessionStorage.removeItem('userInfo');
     }
-  });
+  })();
 </script>
 
 </body>
