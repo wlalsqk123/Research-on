@@ -1928,6 +1928,7 @@ function goPage(id, noHist){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('show'));
   const pg=document.getElementById('page-'+id);
   if(pg){pg.classList.add('show');pg.scrollTop=0;}
+  const pagesEl=document.querySelector('.pages');if(pagesEl)pagesEl.scrollTop=0;
   if(!noHist) pageHistory.push(id);
   const meta=PAGE_META[id]||{title:id,icon:'ti-home'};
   document.getElementById('topTitle').textContent=meta.title;
@@ -2997,19 +2998,18 @@ document.addEventListener('input', function(e) {
 });
 
   // ── 새로고침 후 자동 로그인 복원 ──
-  (function() {
+  window.addEventListener('DOMContentLoaded', function() {
     const saved = sessionStorage.getItem('userInfo');
     if(!saved) return;
     try {
       const userInfo = JSON.parse(saved);
       if(userInfo && userInfo.userId) {
-        // 앱 래퍼가 숨겨진 상태에서 initApp 호출
         initApp(userInfo);
       }
     } catch(e) {
       sessionStorage.removeItem('userInfo');
     }
-  })();
+  });
 </script>
 
 </body>
