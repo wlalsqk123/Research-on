@@ -2648,9 +2648,10 @@ function appHandleLogin(){
 
 // ── 이벤트 연결 ──
 document.getElementById('addModal')?.addEventListener('click', function(e){ if(e.target===this) closeAddModal(); });
+document.addEventListener('click', function(e){
   const menu = document.getElementById('userMenu');
   const foot = document.getElementById('sbFoot');
-  if(menu && !foot.contains(e.target)) menu.classList.remove('open');
+  if(menu && foot && !foot.contains(e.target)) menu.classList.remove('open');
 });
 document.getElementById('relTagArea')?.addEventListener('click', ()=>document.getElementById('relTagInput')?.focus());
 document.getElementById('relTagInput')?.addEventListener('keydown', function(e){
