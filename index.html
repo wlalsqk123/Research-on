@@ -2997,7 +2997,7 @@ document.addEventListener('input', function(e) {
 });
 
   // ── 새로고침 후 자동 로그인 복원 ──
-  (function restoreSession() {
+  window.addEventListener('DOMContentLoaded', function() {
     const saved = sessionStorage.getItem('userInfo');
     if(!saved) return;
     try {
@@ -3008,7 +3008,7 @@ document.addEventListener('input', function(e) {
     } catch(e) {
       sessionStorage.removeItem('userInfo');
     }
-  })();
+  });
 </script>
 
 </body>
